@@ -1,0 +1,55 @@
+@import '/home/pratik/.cache/wal/colors.scss';
+
+* {
+  all: unset;
+}
+
+.hour,
+.min {
+  font-weight: 600;
+  font-family: "Samsung Sharp Sans";
+  color: $color0;
+  font-size: 210px;
+}
+
+.min {
+  margin-top: -89px;
+  margin-bottom: 100px;
+}
+
+.music,
+.update,
+.network,
+.power,
+.wicon,
+.wtemp,
+.date,
+.stime {
+  font-family: "Samsung Sharp Sans";
+  font-size: 13px;
+  font-weight: 500;
+  color: $color0;
+  margin-left: 15px;
+  margin-right: 10px;
+}
+
+.wicon,
+.network {
+  font-family: "JetBrainsMono Nerd Font";
+}
+
+.stime {
+  margin-right: 16px;
+}
+
+.wtemp {
+  margin-left: 5px;
+}
+
+.wicon {
+  margin-right: 5px;
+}
+
+.music {
+  margin-left: 16px;
+}

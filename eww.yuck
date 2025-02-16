@@ -1,0 +1,180 @@
+(
+ defwindow widg1
+ :monitor 0
+ :geometry (
+            geometry
+            :anchor "center"
+            :height "360px"
+            :width "350px"
+            )
+ :stacking "bg"
+ (mid)
+ )
+
+(
+ defwidget mid []
+ (
+  box
+  :orientation "vertical"
+  :space-evenly "false"
+  (
+   box
+   :class "hour"
+   :halign "center"
+   "${hour}"
+   )
+  (
+   box
+   :class "min"
+   :halign "center"
+   "${min}"
+   )
+ )
+)
+
+(
+ defpoll hour
+ :interval "1s"
+ "date +%H"
+ )
+
+(
+ defpoll min
+ :interval "1s"
+ "date +%M"
+ )
+
+
+( 
+ defwindow widg2
+ :monitor 0
+ :geometry (
+            geometry
+            :anchor "top right"
+            :height "25px"
+            :width "480px"
+            )
+ :stacking "bg"
+ (bar)
+ )
+
+(
+  defwidget bar []
+ (
+  box
+  :orientation "horizontal"
+  :space-evenly "false"
+  :halign "end"
+  (
+   box
+   :class "update"
+   "${update}"
+   )
+  (
+   box
+   :class "network"
+   "${network}"
+   )
+  (
+   box
+   :class "power"
+   "${power}"
+   )
+  (
+      box
+   :orientation "horizontal"
+   :space-evenly "false"
+   (
+    box
+    :class "wicon"
+    weathericon
+    )
+   (
+    box
+    :class "wtemp"
+    "${current_temp}"
+    )
+  (
+   box
+   :class "date"
+   "${today}"
+   )
+   (
+    box
+    :class "stime"
+    "${time}"
+    )
+   )
+  )
+ )
+
+(
+ defpoll update
+ :interval "1h"
+ "echo \"󰚰  $(checkupdates | wc -l)\""
+ )
+
+ (
+  defpoll network
+  :interval "30s"
+  "~/.config/eww/scripts/network-status"
+  )
+
+(
+ defpoll power
+ :interval "30s"
+ "echo \"$(~/.config/eww/scripts/battery-status) $(cat /sys/class/power_supply/BAT1/capacity)%\""
+ )
+
+(
+  defpoll weathericon
+  :interval "2h"
+  "~/.config/eww/scripts/weather icon"
+ )
+
+(
+ defpoll current_temp
+ :interval "30m"
+ "echo \"$(~/.config/eww/scripts/weather current_temp)°\""
+ )
+
+(
+ defpoll today
+ :interval "1s"
+ "~/.config/eww/scripts/calendar"
+ )
+
+(
+ defpoll time
+ :interval "1s"
+ "~/.config/eww/scripts/clock"
+ )
+
+(
+ defwindow widg3
+ :monitor 0
+ :geometry (
+            geometry
+            :anchor "top left"
+            :height "25px"
+            :width "500px"
+            )
+ :stacking "bg"
+ (bar2)
+ )
+
+(
+ defwidget bar2 []
+ (
+   box
+   :halign "start"
+   :class "music"
+   "${music}"
+  )
+ )
+
+(
+ defpoll music
+ :interval "3s"
+ "~/.config/eww/scripts/song-status"
+ )

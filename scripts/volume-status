@@ -1,0 +1,4 @@
+#!/bin/fish
+	set volume (math (wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -b 9-12) '*' 100)
+
+printf "$volume%%"

@@ -1,0 +1,56 @@
+#!/bin/sh
+
+level="$(cat /sys/class/power_supply/BAT1/capacity)"
+status="$(cat /sys/class/power_supply/BAT1/status)"
+
+if [[ ("$status" == "Charging") ]]; then
+	if [[ ("$level" -eq "0") ]]; then
+	printf "󰢟 "
+	elif [[ ("$level" -ge "1") && ("$level" -le "10") ]]; then
+	printf "󰢜 "
+	elif [[ ("$level" -ge "11") && ("$level" -le "20") ]]; then
+	printf "󰂆 "
+	elif [[ ("$level" -ge "21") && ("$level" -le "30") ]]; then
+	printf "󰂇 "
+	elif [[ ("$level" -ge "31") && ("$level" -le "40") ]]; then
+	printf "󰂈 "
+	elif [[ ("$level" -ge "41") && ("$level" -le "50") ]]; then
+	printf "󰢝 "
+	elif [[ ("$level" -ge "51") && ("$level" -le "60") ]]; then
+	printf "󰂉 "
+	elif [[ ("$level" -ge "61") && ("$level" -le "70") ]]; then
+	printf "󰢞 "
+	elif [[ ("$level" -ge "71") && ("$level" -le "80") ]]; then
+	printf "󰂊 "
+	elif [[ ("$level" -ge "81") && ("$level" -le "90") ]]; then
+	printf "󰂋 "
+	elif [[ ("$level" -ge "91") && ("$level" -le "100") ]]; then
+	printf "󰂅 "
+	fi
+elif [[ "$status" == "Discharging" ]]; then
+	if [[ ("$level" -eq "0") ]]; then
+	printf "󰂎"
+	elif [[ ("$level" -ge "1") && ("$level" -le "10") ]]; then
+	printf "󰁺"
+	elif [[ ("$level" -ge "11") && ("$level" -le "20") ]]; then
+	printf "󰁻"
+	elif [[ ("$level" -ge "21") && ("$level" -le "30") ]]; then
+	printf "󰁼"
+	elif [[ ("$level" -ge "31") && ("$level" -le "40") ]]; then
+	printf "󰁽"
+	elif [[ ("$level" -ge "41") && ("$level" -le "50") ]]; then
+	printf "󰁾"
+	elif [[ ("$level" -ge "51") && ("$level" -le "60") ]]; then
+	printf "󰁿"
+	elif [[ ("$level" -ge "61") && ("$level" -le "70") ]]; then
+	printf "󰂀"
+	elif [[ ("$level" -ge "71") && ("$level" -le "80") ]]; then
+	printf "󰂁"
+	elif [[ ("$level" -ge "81") && ("$level" -le "90") ]]; then
+	printf "󰂂"
+	elif [[ ("$level" -ge "91") && ("$level" -le "100") ]]; then
+	printf "󰁹"
+	fi
+else
+	printf "󰁹"
+fi

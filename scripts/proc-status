@@ -1,0 +1,5 @@
+#!/bin/sh
+
+proc=$(ps -A -o pcpu | tail -n+2 | paste -sd+ | bc)
+
+printf "%.0f%%" "$proc"
